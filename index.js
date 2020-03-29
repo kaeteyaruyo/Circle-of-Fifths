@@ -101,7 +101,7 @@ keys.forEach((key, idx) => {
         majorArc.fill(idx % 2 ? 'rgb(215, 194, 0)' : 'rgb(191, 160, 4)');
         ABCJS.renderAbc(
             'main__paper',
-            `X:1\nL:1/4\nK:${ key.major.split('/')[0] }\n|${ key.majorScale }|`,
+            `X:1\nL:1/4\nK:${ key.major.split('/')[0] }\n${ key.majorScale }|`,
             {
                 scale: 2,
                 staffwidth: maxRadius * 0.6 * 2,
@@ -136,7 +136,7 @@ keys.forEach((key, idx) => {
         minorArc.fill(idx % 2 ? 'rgb(237, 185, 98)' : 'rgb(216, 167, 78)');
         ABCJS.renderAbc(
             'main__paper',
-            `X:1\nL:1/4\nK:${ key.minor.split('/')[0] }\n|${ key.minorScale }|`,
+            `X:1\nL:1/4\nK:${ key.minor.split('/')[0] }\n${ key.minorScale }|`,
             {
                 scale: 2,
                 staffwidth: maxRadius * 0.6 * 2,
@@ -167,6 +167,22 @@ keys.forEach((key, idx) => {
     majorText.offsetX(majorText.width() / 2);
     majorText.offsetY(13);
     layer.add(majorText);
+    majorText.on('mouseover touchstart', function() {
+        majorArc.fill(idx % 2 ? 'rgb(215, 194, 0)' : 'rgb(191, 160, 4)');
+        ABCJS.renderAbc(
+            'main__paper',
+            `X:1\nL:1/4\nK:${ key.major.split('/')[0] }\n${ key.majorScale }|`,
+            {
+                scale: 2,
+                staffwidth: maxRadius * 0.6 * 2,
+                paddingtop: 0,
+                paddingbottom: 0,
+                paddingright: 0,
+                paddingleft: 0,
+            }
+        );
+        layer.draw();
+    });
 
     textRadius = (minorArc.innerRadius() + minorArc.outerRadius()) / 2;
     const minorText = new Konva.Text({
@@ -181,13 +197,29 @@ keys.forEach((key, idx) => {
     minorText.offsetX(minorText.width() / 2);
     minorText.offsetY(13);
     layer.add(minorText);
+    minorText.on('mouseover touchstart', function() {
+        minorArc.fill(idx % 2 ? 'rgb(215, 194, 0)' : 'rgb(191, 160, 4)');
+        ABCJS.renderAbc(
+            'main__paper',
+            `X:1\nL:1/4\nK:${ key.major.split('/')[0] }\n${ key.minorScale }|`,
+            {
+                scale: 2,
+                staffwidth: maxRadius * 0.6 * 2,
+                paddingtop: 0,
+                paddingbottom: 0,
+                paddingright: 0,
+                paddingleft: 0,
+            }
+        );
+        layer.draw();
+    });
 });
 
 stage.add(layer);
 
 ABCJS.renderAbc(
     'main__paper',
-    `X:1\nL:1/4\nK:C\n|CDEFGABc|`,
+    `X:1\nL:1/4\nK:C\nCDEFGABc|`,
     {
         scale: 2,
         staffwidth: maxRadius * 0.6 * 2,
