@@ -109,7 +109,7 @@ function renderBar(abcstr){
         'main__canvas--paper',
         abcstr,
         {
-            scale: 2,
+            scale: maxRadius * 0.005,
             staffwidth: maxRadius * 0.6 * 2,
             paddingtop: 0,
             paddingbottom: 0,
@@ -176,13 +176,13 @@ keys.forEach((key, idx) => {
         x: majorArc.x() + textRadius * Math.cos(Math.PI / 180 * (90 - idx * 30)),
         y: majorArc.y() - textRadius * Math.sin(Math.PI / 180 * (90 - idx * 30)),
         text: key.major,
-        fontSize: 30,
+        fontSize: maxRadius * 0.09,
         fontFamily: 'Calibri',
         fill: 'black',
         rotation: idx * 30,
     })
     majorText.offsetX(majorText.width() / 2);
-    majorText.offsetY(13);
+    majorText.offsetY(majorText.fontSize() * 0.4);
     majorText.on('mouseover touchstart', () => { onhover(majorArc, 'major'); });
     majorText.on('mouseout touchend', () => { onhoverend(majorArc); });
     layer.add(majorText);
@@ -192,13 +192,13 @@ keys.forEach((key, idx) => {
         x: minorArc.x() + textRadius * Math.cos(Math.PI / 180 * (90 - idx * 30)),
         y: minorArc.y() - textRadius * Math.sin(Math.PI / 180 * (90 - idx * 30)),
         text: key.minor,
-        fontSize: 30,
+        fontSize: maxRadius * 0.09,
         fontFamily: 'Calibri',
         fill: 'black',
         rotation: idx * 30,
     })
     minorText.offsetX(minorText.width() / 2);
-    minorText.offsetY(13);
+    minorText.offsetY(minorText.fontSize() * 0.4);
     minorText.on('mouseover touchstart', () => { onhover(minorArc, 'minor'); });
     minorText.on('mouseout touchend', () => { onhoverend(minorArc); });
     layer.add(minorText);
