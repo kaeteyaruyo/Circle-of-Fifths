@@ -86,8 +86,8 @@ function getAbcstr(){
     }
 }
 
-function optionOnchange(ele){
-    if(ele.value !== 'scale'){
+function optionOnchange(){
+    if(mode.value !== 'scale'){
         minorOption.style.display = 'none';
     }
     else {
