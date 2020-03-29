@@ -1,88 +1,145 @@
-const stage = new Konva.Stage({
-    container: 'main__circle',
-    width: window.innerWidth,
-    height: window.innerHeight,
-});
+const minorOption = document.getElementById('main__option--minor');
+const mode = document.getElementById('mode');
+const minorMode = document.getElementById('minorMode');
+const scales = {
+    C: 'CDEFGABc',
+    D: 'DEFGABcd',
+    E: 'EFGABcde',
+    F: 'FGABcdef',
+    G: 'GABcdefg',
+    A: 'A,B,CDFFGA',
+    B: 'B,CDEFGAB',
+};
 
-const layer = new Konva.Layer();
+const triads = {
+    C: "[CEG][DFA][EGB][FAc][GBd][Ace][Bdf][ceg]",
+    D: "[DFA][EGB][FAc][GBd][Ace][Bdf][ceg][dfa]",
+    E: "[EGB][FAc][GBd][Ace][Bdf][ceg][dfa][egb]",
+    F: "[FAc][GBd][Ace][Bdf][ceg][dfa][egb][fac']",
+    G: "[GBd][Ace][Bdf][ceg][dfa][egb][fac'][gbd']",
+    A: "[A,CE][B,DF][CEG][DFA][EGB][FAc][GBd][Ace]",
+    B: "[B,DF][CEG][DFA][EGB][FAc][GBd][Ace][Bdf]",
+};
 
 const keys = [
     {
         major: 'C',
         minor: 'Am',
-        majorScale: 'CDEFGABc',
-        minorScale: 'A,B,CDEFGA',
     },
     {
         major: 'G',
         minor: 'Em',
-        majorScale: 'GABcdefg',
-        minorScale: 'EFGABcde',
     },
     {
         major: 'D',
         minor: 'Bm',
-        majorScale: 'DEFGABcd',
-        minorScale: 'B,CDEFGAB',
     },
     {
         major: 'A',
         minor: 'F#m',
-        majorScale: 'A,B,CDEFGA',
-        minorScale: 'FGABcdef',
     },
     {
         major: 'E',
         minor: 'C#m',
-        majorScale: 'EFGABcde',
-        minorScale: 'CDEFGABc',
     },
     {
         major: 'B',
         minor: 'G#m',
-        majorScale: 'B,CDEFGAB',
-        minorScale: 'GABcdefg',
     },
     {
         major: 'Gb/F#',
-        minor: 'Ebm/D#m/',
-        majorScale: 'GABcdefg',
-        minorScale: 'EFGABcde',
+        minor: 'Ebm/D#m',
     },
     {
         major: 'Db',
         minor: 'Bbm',
-        majorScale: 'DEFGABcd',
-        minorScale: 'B,CDEFGAB',
     },
     {
         major: 'Ab',
         minor: 'Fm',
-        majorScale: 'A,B,CDEFGA',
-        minorScale: 'FGABcdef',
     },
     {
         major: 'Eb',
         minor: 'Cm',
-        majorScale: 'EFGABcde',
-        minorScale: 'CDEFGABc',
     },
     {
         major: 'Bb',
         minor: 'Gm',
-        majorScale: 'B,CDEFGAB',
-        minorScale: 'GABcdefg',
     },
     {
         major: 'F',
         minor: 'Dm',
-        majorScale: 'FGABcdef',
-        minorScale: 'DEFGABcd',
     },
 ];
 
+let currentKey = keys[0], currentTone = 'major';
+function getAbcstr(){
+    if(mode.value === 'scale'){
+        scale = scales[currentKey[currentTone][0]];
+        if(minorMode.value === 'natural')
+            return `X:1\nL:1\nT:${ currentKey[currentTone].replace(/m/g, '') } ${ currentTone }\nK:${ currentKey[currentTone].split('/')[0] }\n${ scale }|`;
+        else if (minorMode.value === 'harmonic')
+            return `X:1\nL:1\nT:${ currentKey[currentTone].replace(/m/g, '') } ${ currentTone }\nK:${ currentKey[currentTone].split('/')[0] }\n${ [scale.slice(0, scale.length - 2), '^', scale.slice(scale.length - 2)].join('') }|`;
+    }
+    else if(mode.value === 'triads'){
+        return `X:1\nL:1\nT:${ currentKey[currentTone].replace(/m/g, '') } ${ currentTone }\nK:${ currentKey[currentTone].split('/')[0] }\n${ triads[currentKey[currentTone][0]] }|`;
+    }
+}
+
+function optionOnchange(ele){
+    if(ele.value !== 'scale'){
+        minorOption.style.display = 'none';
+    }
+    else {
+        minorOption.style.display = 'inline-block';
+    }
+    renderBar(getAbcstr());
+}
+
+const stage = new Konva.Stage({
+    container: 'main__canvas--circle',
+    width: document.getElementById('main__canvas').clientWidth,
+    height: document.getElementById('main__canvas').clientHeight,
+});
+const layer = new Konva.Layer();
+
 const maxRadius = Math.min(stage.width(), stage.height()) / 2 - 20;
+function renderBar(abcstr){
+    ABCJS.renderAbc(
+        'main__canvas--paper',
+        abcstr,
+        {
+            scale: 2,
+            staffwidth: maxRadius * 0.6 * 2,
+            paddingtop: 0,
+            paddingbottom: 0,
+            paddingright: 0,
+            paddingleft: 0,
+        }
+    );
+}
+
+renderBar(getAbcstr());
+
 keys.forEach((key, idx) => {
+    function onhover(node, tone){
+        node.fill(highlight(node.fill(), -15));
+        currentKey = key;
+        currentTone = tone;
+        renderBar(getAbcstr());
+        layer.draw();
+    }
+
+    function onhoverend(node){
+        node.fill(highlight(node.fill(), 15));
+        layer.draw();
+    }
+
+    function highlight(hsl, val){
+        const arg = hsl.match(/hsl\((.*), (.*), (.*)\)/);
+        return `hsl(${ arg[1] }, ${ Number.parseInt(arg[2]) + val }%, ${ Number.parseInt(arg[3]) + val }%)`
+    }
+
     let textRadius;
     const majorArc = new Konva.Arc({
         x: stage.width() / 2,
@@ -91,33 +148,13 @@ keys.forEach((key, idx) => {
         outerRadius: maxRadius,
         rotation: -105 + idx * 30,
         angle: 360 / 12,
-        fill: idx % 2 ? 'rgb(255, 240, 105)' : 'rgb(250, 214, 29)',
+        fill: idx % 2 ? 'hsl(54, 100%, 70%)' : 'hsl(50, 96%, 55%)',
         stroke: '#332011',
         strokeWidth: 1,
     });
+    majorArc.on('mouseover touchstart', () => { onhover(majorArc, 'major'); });
+    majorArc.on('mouseout touchend', () => { onhoverend(majorArc); });
     layer.add(majorArc);
-
-    majorArc.on('mouseover touchstart', function() {
-        majorArc.fill(idx % 2 ? 'rgb(215, 194, 0)' : 'rgb(191, 160, 4)');
-        ABCJS.renderAbc(
-            'main__paper',
-            `X:1\nL:1/4\nK:${ key.major.split('/')[0] }\n${ key.majorScale }|`,
-            {
-                scale: 2,
-                staffwidth: maxRadius * 0.6 * 2,
-                paddingtop: 0,
-                paddingbottom: 0,
-                paddingright: 0,
-                paddingleft: 0,
-            }
-        );
-        layer.draw();
-    });
-
-    majorArc.on('mouseout touchend', function() {
-        majorArc.fill(idx % 2 ? 'rgb(255, 240, 105)' : 'rgb(250, 214, 29)');
-        layer.draw();
-    });
 
     const minorArc = new Konva.Arc({
         x: stage.width() / 2,
@@ -126,33 +163,13 @@ keys.forEach((key, idx) => {
         outerRadius: maxRadius * 0.85,
         rotation: -105 + idx * 30,
         angle: 30,
-        fill: idx % 2 ? 'rgb(252, 243, 228)' : 'rgb(239, 219, 182)',
+        fill: idx % 2 ? 'hsl(38, 80%, 94%)' : 'hsl(39, 64%, 83%)',
         stroke: '#332011',
         strokeWidth: 1,
     });
+    minorArc.on('mouseover touchstart', () => { onhover(minorArc, 'minor'); });
+    minorArc.on('mouseout touchend', () => { onhoverend(minorArc); });
     layer.add(minorArc);
-
-    minorArc.on('mouseover touchstart', function() {
-        minorArc.fill(idx % 2 ? 'rgb(237, 185, 98)' : 'rgb(216, 167, 78)');
-        ABCJS.renderAbc(
-            'main__paper',
-            `X:1\nL:1/4\nK:${ key.minor.split('/')[0] }\n${ key.minorScale }|`,
-            {
-                scale: 2,
-                staffwidth: maxRadius * 0.6 * 2,
-                paddingtop: 0,
-                paddingbottom: 0,
-                paddingright: 0,
-                paddingleft: 0,
-            }
-        );
-        layer.draw();
-    });
-
-    minorArc.on('mouseout touchend', function() {
-        minorArc.fill(idx % 2 ? 'rgb(252, 243, 228)' : 'rgb(239, 219, 182)');
-        layer.draw();
-    });
 
     textRadius = (majorArc.innerRadius() + majorArc.outerRadius()) / 2;
     const majorText = new Konva.Text({
@@ -166,23 +183,9 @@ keys.forEach((key, idx) => {
     })
     majorText.offsetX(majorText.width() / 2);
     majorText.offsetY(13);
+    majorText.on('mouseover touchstart', () => { onhover(majorArc, 'major'); });
+    majorText.on('mouseout touchend', () => { onhoverend(majorArc); });
     layer.add(majorText);
-    majorText.on('mouseover touchstart', function() {
-        majorArc.fill(idx % 2 ? 'rgb(215, 194, 0)' : 'rgb(191, 160, 4)');
-        ABCJS.renderAbc(
-            'main__paper',
-            `X:1\nL:1/4\nK:${ key.major.split('/')[0] }\n${ key.majorScale }|`,
-            {
-                scale: 2,
-                staffwidth: maxRadius * 0.6 * 2,
-                paddingtop: 0,
-                paddingbottom: 0,
-                paddingright: 0,
-                paddingleft: 0,
-            }
-        );
-        layer.draw();
-    });
 
     textRadius = (minorArc.innerRadius() + minorArc.outerRadius()) / 2;
     const minorText = new Konva.Text({
@@ -196,36 +199,9 @@ keys.forEach((key, idx) => {
     })
     minorText.offsetX(minorText.width() / 2);
     minorText.offsetY(13);
+    minorText.on('mouseover touchstart', () => { onhover(minorArc, 'minor'); });
+    minorText.on('mouseout touchend', () => { onhoverend(minorArc); });
     layer.add(minorText);
-    minorText.on('mouseover touchstart', function() {
-        minorArc.fill(idx % 2 ? 'rgb(215, 194, 0)' : 'rgb(191, 160, 4)');
-        ABCJS.renderAbc(
-            'main__paper',
-            `X:1\nL:1/4\nK:${ key.major.split('/')[0] }\n${ key.minorScale }|`,
-            {
-                scale: 2,
-                staffwidth: maxRadius * 0.6 * 2,
-                paddingtop: 0,
-                paddingbottom: 0,
-                paddingright: 0,
-                paddingleft: 0,
-            }
-        );
-        layer.draw();
-    });
 });
 
 stage.add(layer);
-
-ABCJS.renderAbc(
-    'main__paper',
-    `X:1\nL:1/4\nK:C\nCDEFGABc|`,
-    {
-        scale: 2,
-        staffwidth: maxRadius * 0.6 * 2,
-        paddingtop: 0,
-        paddingbottom: 0,
-        paddingright: 0,
-        paddingleft: 0,
-    }
-);
