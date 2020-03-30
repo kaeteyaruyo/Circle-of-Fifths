@@ -7,7 +7,7 @@ const scales = {
     E: 'EFGABcde',
     F: 'FGABcdef',
     G: 'GABcdefg',
-    A: 'A,B,CDFFGA',
+    A: 'A,B,CDEFGA',
     B: 'B,CDEFGAB',
 };
 
