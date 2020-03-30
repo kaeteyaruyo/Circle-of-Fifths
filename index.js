@@ -76,7 +76,7 @@ let currentKey = keys[0], currentTone = 'major';
 function getAbcstr(){
     if(mode.value === 'scale'){
         scale = scales[currentKey[currentTone][0]];
-        if(minorMode.value === 'natural')
+        if(currentTone === 'major' || minorMode.value === 'natural')
             return `X:1\nL:1\nT:${ currentKey[currentTone].replace(/m/g, '') } ${ currentTone }\nK:${ currentKey[currentTone].split('/')[0] }\n${ scale }|`;
         else if (minorMode.value === 'harmonic')
             return `X:1\nL:1\nT:${ currentKey[currentTone].replace(/m/g, '') } ${ currentTone }\nK:${ currentKey[currentTone].split('/')[0] }\n${ [scale.slice(0, scale.length - 2), '^', scale.slice(scale.length - 2)].join('') }|`;
