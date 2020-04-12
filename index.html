@@ -20,17 +20,21 @@
                 font-size: 16px;
             }
 
-            #main__option {
+            .main__option {
                 margin: .5rem 1rem;
             }
 
-            #main__option--mode {
+            .main__option--mode {
                 display: inline-block;
                 margin-right: 1rem;
             }
 
-            #main__option--minor {
+            .main__option--scale {
                 display: inline-block;
+            }
+
+            .main__option--chord {
+                display: none;
             }
 
             #main__canvas {
@@ -43,26 +47,39 @@
                 z-index: 100;
                 top: 50%;
                 left: 50%;
-                transform: translate(-50%, -40%);
+                transform: translate(-50%, -40%) scale(0.725, 0.725);
             }
         </style>
     </head>
     <body>
-        <div id="main__option">
-            <div id="main__option--mode">
+        <div class="main__option">
+            <div class="main__option--mode">
                 <span>模式： </span>
-                <select id="mode" onchange="optionOnchange()">
+                <select id="option--mode" onchange="modeOnchange(this)">
                     <option value="scale">音階</option>
-                    <option value="triads">順階和弦</option>
+                    <option value="chord">順階和弦</option>
                 </select>
             </div>
-            <div id="main__option--minor">
+            <div class="main__option--scale">
                 <span>小音階模式： </span>
-                <select id="minorMode" onchange="optionOnchange()">
+                <select id="option--scale" onchange="scaleModeOnchange(this)">
                     <option value="natural">自然小音階</option>
                     <option value="harmonic">和聲小音階</option>
                     <!-- <option>曲調小音階</option> -->
                 </select>
+            </div>
+            <div class="main__option--chord">
+                <span>大調和弦種類： </span>
+                <select id="option--chord" onchange="chordModeOnchange(this)">
+                    <option value="triad">三和弦</option>
+                    <option value="seventh">七和弦</option>
+                </select>
+            </div>
+            <div class="main__option--sign">
+                <input type="radio" onchange="signModeOnchange(this)" name="sign" value="keySignature" checked>
+                <label>使用調號</span>
+                <input type="radio" onchange="signModeOnchange(this)" name="sign" value="accidental">
+                <span>使用臨時記號</span>
             </div>
         </div>
         <div id="main__canvas">
