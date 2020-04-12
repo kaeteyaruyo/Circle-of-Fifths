@@ -779,6 +779,7 @@ function renderBar(abcstr){
         abcstr,
         {
             scale: maxRadius * 0.005,
+            staffwidth: maxRadius * 0.9 * 2,
             paddingtop: 0,
             paddingbottom: 0,
             paddingright: 0,
