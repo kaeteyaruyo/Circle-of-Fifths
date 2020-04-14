@@ -1,3 +1,4 @@
+const sheet = document.querySelector('#main__canvas--paper');
 const scaleOptionSelector = document.querySelector('.main__option--scale');
 const chordOptionSelector = document.querySelector('.main__option--chord');
 const chordName = document.querySelector('#main__canvas--chord');
@@ -14,9 +15,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[CEG][DFA][EGB][FAc][GBd][Ace][Bdf][ceg]",
-                    triadChord: ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'B<sup>o</sup>', 'C'],
+                    triadChord: ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'B<sup>o</sup>'],
                     seventh: "[CEGB][DFAc][EGBd][FAce][GBdf][Aceg][Bdfa][cegb]",
-                    seventhChord: ['CΔ7', 'Dm7', 'Em7', 'FΔ7', 'G7', 'Am7', 'B<sup>ø</sup>7', 'CΔ7'],
+                    seventhChord: ['CΔ7', 'Dm7', 'Em7', 'FΔ7', 'G7', 'Am7', 'B<sup>ø</sup>7'],
                 },
             },
             accidental: {
@@ -26,9 +27,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[CEG][DFA][EGB][FAc][GBd][Ace][Bdf][ceg]",
-                    triadChord: ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'B<sup>o</sup>', 'C'],
+                    triadChord: ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'B<sup>o</sup>'],
                     seventh: "[CEGB][DFAc][EGBd][FAce][GBdf][Aceg][Bdfa][cegb]",
-                    seventhChord: ['CΔ7', 'Dm7', 'Em7', 'FΔ7', 'G7', 'Am7', 'B<sup>ø</sup>7', 'CΔ7'],
+                    seventhChord: ['CΔ7', 'Dm7', 'Em7', 'FΔ7', 'G7', 'Am7', 'B<sup>ø</sup>7'],
                 },
             },
         },
@@ -41,9 +42,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[A,CE][B,DF][CE^G][DFA][E^GB][FAc][^GBd][Ace]",
-                    triadChord: ['Am', 'B<sup>o</sup>', 'C+', 'Dm', 'E', 'F', 'G#<sup>o</sup>', 'Am'],
+                    triadChord: ['Am', 'B<sup>o</sup>', 'C+', 'Dm', 'E', 'F', 'G#<sup>o</sup>'],
                     seventh: "[A,CE][B,DF][CE^G][DFA][E^GB][FAc][^GBd][Ace]", // dummy
-                    seventhChord: ['Am', 'B<sup>o</sup>', 'C+', 'Dm', 'E', 'F', 'G#<sup>o</sup>', 'Am'], // dummy
+                    seventhChord: ['Am', 'B<sup>o</sup>', 'C+', 'Dm', 'E', 'F', 'G#<sup>o</sup>'], // dummy
                 },
             },
             accidental: {
@@ -53,9 +54,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[A,CE][B,DF][CE^G][DFA][E^GB][FAc][^GBd][Ace]",
-                    triadChord: ['Am', 'B<sup>o</sup>', 'C+', 'Dm', 'E', 'F', 'G#<sup>o</sup>', 'Am'],
+                    triadChord: ['Am', 'B<sup>o</sup>', 'C+', 'Dm', 'E', 'F', 'G#<sup>o</sup>'],
                     seventh: "[A,CE][B,DF][CE^G][DFA][E^GB][FAc][^GBd][Ace]", // dummy
-                    seventhChord: ['Am', 'B<sup>o</sup>', 'C+', 'Dm', 'E', 'F', 'G#<sup>o</sup>', 'Am'], // dummy
+                    seventhChord: ['Am', 'B<sup>o</sup>', 'C+', 'Dm', 'E', 'F', 'G#<sup>o</sup>'], // dummy
                 },
             },
         },
@@ -70,9 +71,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[GBd][Ace][Bdf][ceg][dfa][egb][fac'][gbd']",
-                    triadChord: ['G', 'Am', 'Bm', 'C', 'D', 'Em', 'F#<sup>o</sup>', 'G'],
+                    triadChord: ['G', 'Am', 'Bm', 'C', 'D', 'Em', 'F#<sup>o</sup>'],
                     seventh: "[GBdf][Aceg][Bdfa][cegb][dfac'][egbd'][fac'e'][gbd'f']",
-                    seventhChord: ['GΔ7', 'Am7', 'Bm7', 'CΔ7', 'D7', 'Em7', 'F#<sup>ø</sup>7', 'GΔ7'],
+                    seventhChord: ['GΔ7', 'Am7', 'Bm7', 'CΔ7', 'D7', 'Em7', 'F#<sup>ø</sup>7'],
                 },
             },
             accidental: {
@@ -82,9 +83,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[GBd][Ace][Bd^f][ceg][d^fa][egb][^fac'][gbd']",
-                    triadChord: ['G', 'Am', 'Bm', 'C', 'D', 'Em', 'F#<sup>o</sup>', 'G'],
+                    triadChord: ['G', 'Am', 'Bm', 'C', 'D', 'Em', 'F#<sup>o</sup>'],
                     seventh: "[GBd^f][Aceg][Bd^fa][cegb][d^fac'][egbd'][^fac'e'][gbd'^f']",
-                    seventhChord: ['GΔ7', 'Am7', 'Bm7', 'CΔ7', 'D7', 'Em7', 'F#<sup>ø</sup>7', 'GΔ7'],
+                    seventhChord: ['GΔ7', 'Am7', 'Bm7', 'CΔ7', 'D7', 'Em7', 'F#<sup>ø</sup>7'],
                 },
             },
         },
@@ -97,9 +98,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[EGB][FAc][GB^d][Ace][B^df][ceg][^dfa][egb]",
-                    triadChord: ['Em', 'F#<sup>o</sup>', 'G+', 'Am', 'B', 'C', 'D#<sup>o</sup>', 'Em'],
+                    triadChord: ['Em', 'F#<sup>o</sup>', 'G+', 'Am', 'B', 'C', 'D#<sup>o</sup>'],
                     seventh: "[EGB][FAc][GB^d][Ace][B^df][ceg][^dfa][egb]", // dummy
-                    seventhChord: ['Em', 'F#<sup>o</sup>', 'G+', 'Am', 'B', 'C', 'D#<sup>o</sup>', 'Em'], // dummy
+                    seventhChord: ['Em', 'F#<sup>o</sup>', 'G+', 'Am', 'B', 'C', 'D#<sup>o</sup>'], // dummy
                 },
             },
             accidental: {
@@ -109,9 +110,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[EGB][^FAc][GB^d][Ace][B^d^f][ceg][^d^fa][egb]",
-                    triadChord: ['Em', 'F#<sup>o</sup>', 'G+', 'Am', 'B', 'C', 'D#<sup>o</sup>', 'Em'],
+                    triadChord: ['Em', 'F#<sup>o</sup>', 'G+', 'Am', 'B', 'C', 'D#<sup>o</sup>'],
                     seventh: "[EGB][^FAc][GB^d][Ace][B^d^f][ceg][^d^fa][egb]", // dummy
-                    seventhChord: ['Em', 'F#<sup>o</sup>', 'G+', 'Am', 'B', 'C', 'D#<sup>o</sup>', 'Em'], // dummy
+                    seventhChord: ['Em', 'F#<sup>o</sup>', 'G+', 'Am', 'B', 'C', 'D#<sup>o</sup>'], // dummy
                 },
             },
         },
@@ -126,9 +127,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[DFA][EGB][FAc][GBd][Ace][Bdf][ceg][dfa]",
-                    triadChord: ['D', 'Em', 'F#m', 'G', 'A', 'Bm', 'C#<sup>o</sup>', 'D'],
+                    triadChord: ['D', 'Em', 'F#m', 'G', 'A', 'Bm', 'C#<sup>o</sup>'],
                     seventh: "[DFAc][EGBd][FAce][GBdf][Aceg][Bdfa][cegb][dfac']",
-                    seventhChord: ['DΔ7', 'Em7', 'F#m7', 'GΔ7', 'A7', 'Bm7', 'C#<sup>ø</sup>7', 'DΔ7'],
+                    seventhChord: ['DΔ7', 'Em7', 'F#m7', 'GΔ7', 'A7', 'Bm7', 'C#<sup>ø</sup>7'],
                 },
             },
             accidental: {
@@ -138,9 +139,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[D^FA][EGB][^FA^c][GBd][A^ce][Bd^f][^ceg][d^fa]",
-                    triadChord: ['D', 'Em', 'F#m', 'G', 'A', 'Bm', 'C#<sup>o</sup>', 'D'],
+                    triadChord: ['D', 'Em', 'F#m', 'G', 'A', 'Bm', 'C#<sup>o</sup>'],
                     seventh: "[D^FA^c][EGBd][^FA^ce][GBdf][A^ceg][Bd^fa][^cegb][d^fa^c']",
-                    seventhChord: ['DΔ7', 'Em7', 'F#m7', 'GΔ7', 'A7', 'Bm7', 'C#<sup>ø</sup>7', 'DΔ7'],
+                    seventhChord: ['DΔ7', 'Em7', 'F#m7', 'GΔ7', 'A7', 'Bm7', 'C#<sup>ø</sup>7'],
                 },
             },
         },
@@ -153,9 +154,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[B,DF][CEG][DF^A][EGB][F^Ac][GBd][^Ace][Bdf]",
-                    triadChord: ['Bm', 'C#<sup>o</sup>', 'D+', 'Em', 'F#', 'G', 'A#<sup>o</sup>', 'Bm'],
+                    triadChord: ['Bm', 'C#<sup>o</sup>', 'D+', 'Em', 'F#', 'G', 'A#<sup>o</sup>'],
                     seventh: "[B,DF][CEG][DF^A][EGB][F^Ac][GBd][^Ace][Bdf]", // dummy
-                    seventhChord: ['Bm', 'C#<sup>o</sup>', 'D+', 'Em', 'F#', 'G', 'A#<sup>o</sup>', 'Bm'], // dummy
+                    seventhChord: ['Bm', 'C#<sup>o</sup>', 'D+', 'Em', 'F#', 'G', 'A#<sup>o</sup>'], // dummy
                 },
             },
             accidental: {
@@ -165,9 +166,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[B,D^F][^CEG][D^F^A][EGB][^F^A^c][GBd][^A^ce][Bd^f]",
-                    triadChord: ['Bm', 'C#<sup>o</sup>', 'D+', 'Em', 'F#', 'G', 'A#<sup>o</sup>', 'Bm'],
+                    triadChord: ['Bm', 'C#<sup>o</sup>', 'D+', 'Em', 'F#', 'G', 'A#<sup>o</sup>'],
                     seventh: "[B,D^F][^CEG][D^F^A][EGB][^F^A^c][GBd][^A^ce][Bd^f]", // dummy
-                    seventhChord: ['Bm', 'C#<sup>o</sup>', 'D+', 'Em', 'F#', 'G', 'A#<sup>o</sup>', 'Bm'], // dummy
+                    seventhChord: ['Bm', 'C#<sup>o</sup>', 'D+', 'Em', 'F#', 'G', 'A#<sup>o</sup>'], // dummy
                 },
             },
         },
@@ -182,9 +183,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[A,CE][B,DF][CEG][DFA][EGB][FAc][GBd][Ace]",
-                    triadChord: ['A', 'Bm', 'C#m', 'D', 'E', 'F#m', 'G#<sup>o</sup>', 'A'],
+                    triadChord: ['A', 'Bm', 'C#m', 'D', 'E', 'F#m', 'G#<sup>o</sup>'],
                     seventh: "[A,CEG][B,DFA][CEGB][DFAc][EGBd][FAce][GBdf][Aceg]",
-                    seventhChord: ['AΔ7', 'Bm7', 'C#m7', 'DΔ7', 'E7', 'F#m7', 'G#<sup>ø</sup>7', 'AΔ7'],
+                    seventhChord: ['AΔ7', 'Bm7', 'C#m7', 'DΔ7', 'E7', 'F#m7', 'G#<sup>ø</sup>7'],
                 },
             },
             accidental: {
@@ -194,9 +195,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[A,^CE][B,D^F][^CE^G][D^FA][E^GB][^FA^c][^GBd][A^ce]",
-                    triadChord: ['A', 'Bm', 'C#m', 'D', 'E', 'F#m', 'G#<sup>o</sup>', 'A'],
+                    triadChord: ['A', 'Bm', 'C#m', 'D', 'E', 'F#m', 'G#<sup>o</sup>'],
                     seventh: "[A,^CE^G][B,D^FA][^CE^GB][D^FA^c][E^GBd][^FA^ce][^GBdf][A^ceg]",
-                    seventhChord: ['AΔ7', 'Bm7', 'C#m7', 'DΔ7', 'E7', 'F#m7', 'G#<sup>ø</sup>7', 'AΔ7'],
+                    seventhChord: ['AΔ7', 'Bm7', 'C#m7', 'DΔ7', 'E7', 'F#m7', 'G#<sup>ø</sup>7'],
                 },
             },
         },
@@ -209,9 +210,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[FAc][GBd][Ac^e][Bdf][c^eg][dfa][^egb][fac']",
-                    triadChord: ['F#m', 'G#<sup>o</sup>', 'A+', 'Bm', 'C#', 'D', 'E#<sup>o</sup>', 'F#m'],
+                    triadChord: ['F#m', 'G#<sup>o</sup>', 'A+', 'Bm', 'C#', 'D', 'E#<sup>o</sup>'],
                     seventh: "[FAc][GBd][Ac^e][Bdf][c^eg][dfa][^egb][fac']", // dummy
-                    seventhChord: ['F#m', 'G#<sup>o</sup>', 'A+', 'Bm', 'C#', 'D', 'E#<sup>o</sup>', 'F#m'], // dummy
+                    seventhChord: ['F#m', 'G#<sup>o</sup>', 'A+', 'Bm', 'C#', 'D', 'E#<sup>o</sup>'], // dummy
                 },
             },
             accidental: {
@@ -221,9 +222,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[^FA^c][^GBd][A^c^e][Bd^f][^c^e^g][d^fa][^e^gb][^fa^c']",
-                    triadChord: ['F#m', 'G#<sup>o</sup>', 'A+', 'Bm', 'C#', 'D', 'E#<sup>o</sup>', 'F#m'],
+                    triadChord: ['F#m', 'G#<sup>o</sup>', 'A+', 'Bm', 'C#', 'D', 'E#<sup>o</sup>'],
                     seventh: "[^FA^c][^GBd][A^c^e][Bd^f][^c^e^g][d^fa][^e^gb][^fa^c']", // dummy
-                    seventhChord: ['F#m', 'G#<sup>o</sup>', 'A+', 'Bm', 'C#', 'D', 'E#<sup>o</sup>', 'F#m'], // dummy
+                    seventhChord: ['F#m', 'G#<sup>o</sup>', 'A+', 'Bm', 'C#', 'D', 'E#<sup>o</sup>'], // dummy
                 },
             },
         },
@@ -238,9 +239,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[EGB][FAc][GBd][Ace][Bdf][ceg][dfa][egb]",
-                    triadChord: ['E', 'F#m', 'G#m', 'A', 'B', 'C#m', 'D#<sup>o</sup>', 'E'],
+                    triadChord: ['E', 'F#m', 'G#m', 'A', 'B', 'C#m', 'D#<sup>o</sup>'],
                     seventh: "[EGBd][FAce][GBdf][Aceg][Bdfa][cegb][dfac'][egbd']",
-                    seventhChord: ['EΔ7', 'F#m7', 'G#m7', 'AΔ7', 'B7', 'C#m7', 'D#<sup>ø</sup>7', 'EΔ7'],
+                    seventhChord: ['EΔ7', 'F#m7', 'G#m7', 'AΔ7', 'B7', 'C#m7', 'D#<sup>ø</sup>7'],
                 },
             },
             accidental: {
@@ -250,9 +251,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[E^GB][^FA^c][^GB^d][A^ce][B^d^f][^ce^g][^d^fa][e^gb]",
-                    triadChord: ['E', 'F#m', 'G#m', 'A', 'B', 'C#m', 'D#<sup>o</sup>', 'E'],
+                    triadChord: ['E', 'F#m', 'G#m', 'A', 'B', 'C#m', 'D#<sup>o</sup>'],
                     seventh: "[E^GB^d][^FA^ce][^GB^d^f][A^ce^g][B^d^fa][^ce^gb][^d^fa^c'][e^gb^d']",
-                    seventhChord: ['EΔ7', 'F#m7', 'G#m7', 'AΔ7', 'B7', 'C#m7', 'D#<sup>ø</sup>7', 'EΔ7'],
+                    seventhChord: ['EΔ7', 'F#m7', 'G#m7', 'AΔ7', 'B7', 'C#m7', 'D#<sup>ø</sup>7'],
                 },
             },
         },
@@ -265,9 +266,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[CEG][DFA][EG^B][FAc][G^Bd][Ace][^Bdf][ceg]",
-                    triadChord: ['C#m', 'D#<sup>o</sup>', 'E+', 'F#m', 'G#', 'A', 'B#<sup>o</sup>', 'C#m'],
+                    triadChord: ['C#m', 'D#<sup>o</sup>', 'E+', 'F#m', 'G#', 'A', 'B#<sup>o</sup>'],
                     seventh: "[CEG][DFA][EG^B][FAc][G^Bd][Ace][^Bdf][ceg]", // dummy
-                    seventhChord: ['C#m', 'D#<sup>o</sup>', 'E+', 'F#m', 'G#', 'A', 'B#<sup>o</sup>', 'C#m'], // dummy
+                    seventhChord: ['C#m', 'D#<sup>o</sup>', 'E+', 'F#m', 'G#', 'A', 'B#<sup>o</sup>'], // dummy
                 },
             },
             accidental: {
@@ -277,9 +278,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[^CE^G][^D^FA][E^G^B][^FA^c][^G^B^d][A^ce][^B^d^f][^ce^g]",
-                    triadChord: ['C#m', 'D#<sup>o</sup>', 'E+', 'F#m', 'G#', 'A', 'B#<sup>o</sup>', 'C#m'],
+                    triadChord: ['C#m', 'D#<sup>o</sup>', 'E+', 'F#m', 'G#', 'A', 'B#<sup>o</sup>'],
                     seventh: "[^CE^G][^D^FA][E^G^B][^FA^c][^G^B^d][A^ce][^B^d^f][^ce^g]", // dummy
-                    seventhChord: ['C#m', 'D#<sup>o</sup>', 'E+', 'F#m', 'G#', 'A', 'B#<sup>o</sup>', 'C#m'], // dummy
+                    seventhChord: ['C#m', 'D#<sup>o</sup>', 'E+', 'F#m', 'G#', 'A', 'B#<sup>o</sup>'], // dummy
                 },
             },
         },
@@ -294,9 +295,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[B,DF][CEG][DFA][EGB][FAc][GBd][Ace][Bdf]",
-                    triadChord: ['B', 'C#m', 'D#m', 'E', 'F#', 'G#m', 'A#<sup>o</sup>', 'B'],
+                    triadChord: ['B', 'C#m', 'D#m', 'E', 'F#', 'G#m', 'A#<sup>o</sup>'],
                     seventh: "[B,DFA][CEGB][DFAc][EGBd][FAce][GBdf][Aceg][Bdfa]",
-                    seventhChord: ['BΔ7', 'C#m7', 'D#m7', 'EΔ7', 'F#7', 'G#m7', 'A#<sup>ø</sup>7', 'BΔ7'],
+                    seventhChord: ['BΔ7', 'C#m7', 'D#m7', 'EΔ7', 'F#7', 'G#m7', 'A#<sup>ø</sup>7']
                 },
             },
             accidental: {
@@ -306,9 +307,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[B,^D^F][^CE^G][^D^F^A][E^GB][^F^A^c][^GB^d][^A^ce][B^d^f]",
-                    triadChord: ['B', 'C#m', 'D#m', 'E', 'F#', 'G#m', 'A#<sup>o</sup>', 'B'],
+                    triadChord: ['B', 'C#m', 'D#m', 'E', 'F#', 'G#m', 'A#<sup>o</sup>'],
                     seventh: "[B,^D^F^A][^CE^GB][^D^F^A^c][E^GB^d][^F^A^ce][^GB^d^f][^A^ce^g][B^d^f^a]",
-                    seventhChord: ['BΔ7', 'C#m7', 'D#m7', 'EΔ7', 'F#7', 'G#m7', 'A#<sup>ø</sup>7', 'BΔ7'],
+                    seventhChord: ['BΔ7', 'C#m7', 'D#m7', 'EΔ7', 'F#7', 'G#m7', 'A#<sup>ø</sup>7'],
                 },
             },
         },
@@ -321,9 +322,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[GBd][Ace][Bd^f][ceg][d^fa][egb][^fac'][gbd']",
-                    triadChord: ['G#m', 'A#<sup>o</sup>', 'B+', 'C#m', 'D#', 'E', 'F#<sup>o</sup>', 'G#m'],
+                    triadChord: ['G#m', 'A#<sup>o</sup>', 'B+', 'C#m', 'D#', 'E', 'F#<sup>o</sup>'],
                     seventh: "[GBd][Ace][Bd^f][ceg][d^fa][egb][^fac'][gbd']", // dummy
-                    seventhChord: ['G#m', 'A#<sup>o</sup>', 'B+', 'C#m', 'D#', 'E', 'F#<sup>o</sup>', 'G#m'], // dummy
+                    seventhChord: ['G#m', 'A#<sup>o</sup>', 'B+', 'C#m', 'D#', 'E', 'F#<sup>o</sup>'], // dummy
                 },
             },
             accidental: {
@@ -333,9 +334,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[^GB^d][^A^ce][B^d^^f][^ce^g][^d^^f^a][e^gb][^^f^a^c'][^gb^d']",
-                    triadChord: ['G#m', 'A#<sup>o</sup>', 'B+', 'C#m', 'D#', 'E', 'F#<sup>o</sup>', 'G#m'],
+                    triadChord: ['G#m', 'A#<sup>o</sup>', 'B+', 'C#m', 'D#', 'E', 'F#<sup>o</sup>'],
                     seventh: "[^GB^d][^A^ce][B^d^^f][^ce^g][^d^^f^a][e^gb][^^f^a^c'][^gb^d']", // dummy
-                    seventhChord: ['G#m', 'A#<sup>o</sup>', 'B+', 'C#m', 'D#', 'E', 'F#<sup>o</sup>', 'G#m'], // dummy
+                    seventhChord: ['G#m', 'A#<sup>o</sup>', 'B+', 'C#m', 'D#', 'E', 'F#<sup>o</sup>'], // dummy
                 },
             },
         },
@@ -350,9 +351,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[GBd][Ace][Bdf][ceg][dfa][egb][fac'][gbd']",
-                    triadChord: ['Gb', 'Abm', 'Bbm', 'Cb', 'Db', 'Ebm', 'F<sup>o</sup>', 'Gb'],
+                    triadChord: ['Gb', 'Abm', 'Bbm', 'Cb', 'Db', 'Ebm', 'F<sup>o</sup>'],
                     seventh: "[GBdf][Aceg][Bdfa][cegb][dfac'][egbd'][fac'e'][gbd'f']",
-                    seventhChord: ['GbΔ7', 'Abm7', 'Bbm7', 'Cb7', 'Db7', 'Ebm7', 'F<sup>ø</sup>7', 'GbΔ7'],
+                    seventhChord: ['GbΔ7', 'Abm7', 'Bbm7', 'Cb7', 'Db7', 'Ebm7', 'F<sup>ø</sup>7'],
                 },
             },
             accidental: {
@@ -362,9 +363,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[_G_B_d][_A_c_e][_B_df][_c_e_g][_df_a][_e_g_b][f_a_c'][_g_b_d']",
-                    triadChord: ['Gb', 'Abm', 'Bbm', 'Cb', 'Db', 'Ebm', 'F<sup>o</sup>', 'Gb'],
+                    triadChord: ['Gb', 'Abm', 'Bbm', 'Cb', 'Db', 'Ebm', 'F<sup>o</sup>'],
                     seventh: "[_G_B_df][_A_c_e_g][_B_df_a][_c_e_g_b][_df_a_c'][_e_g_b_d'][f_a_c'_e'][_g_b_d'f']",
-                    seventhChord: ['GbΔ7', 'Abm7', 'Bbm7', 'Cb7', 'Db7', 'Ebm7', 'F<sup>ø</sup>7', 'GbΔ7'],
+                    seventhChord: ['GbΔ7', 'Abm7', 'Bbm7', 'Cb7', 'Db7', 'Ebm7', 'F<sup>ø</sup>7'],
                 },
             },
         },
@@ -377,9 +378,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[EGB][FAc][GB=d][Ace][B=df][ceg][=dfa][egb]",
-                    triadChord: ['Ebm', 'F<sup>o</sup>', 'Gb+', 'Abm', 'Bb#', 'Cb', 'D<sup>o</sup>', 'Ebm'],
+                    triadChord: ['Ebm', 'F<sup>o</sup>', 'Gb+', 'Abm', 'Bb#', 'Cb', 'D<sup>o</sup>'],
                     seventh: "[GBd][Ace][Bd^f][ceg][d^fa][egb][^fac'][gbd']", // dummy
-                    seventhChord: ['Ebm', 'F<sup>o</sup>', 'Gb+', 'Abm', 'Bb#', 'Cb', 'D<sup>o</sup>', 'Ebm'], // dummy
+                    seventhChord: ['Ebm', 'F<sup>o</sup>', 'Gb+', 'Abm', 'Bb#', 'Cb', 'D<sup>o</sup>'], // dummy
                 },
             },
             accidental: {
@@ -389,9 +390,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[_E_G_B][F_A_c][_G_Bd][_A_c_e][_Bdf][_c_e_g][df_a][_e_g_b]",
-                    triadChord: ['Ebm', 'F<sup>o</sup>', 'Gb+', 'Abm', 'Bb#', 'Cb', 'D<sup>o</sup>', 'Ebm'],
+                    triadChord: ['Ebm', 'F<sup>o</sup>', 'Gb+', 'Abm', 'Bb#', 'Cb', 'D<sup>o</sup>'],
                     seventh: "[_E_G_B][F_A_c][_G_Bd][_A_c_e][_Bdf][_c_e_g][df_a][_e_g_b]", // dummy
-                    seventhChord: ['Ebm', 'F<sup>o</sup>', 'Gb+', 'Abm', 'Bb#', 'Cb', 'D<sup>o</sup>', 'Ebm'], // dummy
+                    seventhChord: ['Ebm', 'F<sup>o</sup>', 'Gb+', 'Abm', 'Bb#', 'Cb', 'D<sup>o</sup>'], // dummy
                 },
             },
         },
@@ -406,9 +407,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[DFA][EGB][FAc][GBd][Ace][Bdf][ceg][dfa]",
-                    triadChord: ['Db', 'Ebm', 'Fm', 'Gb', 'Ab', 'Bbm', 'C<sup>o</sup>', 'Db'],
+                    triadChord: ['Db', 'Ebm', 'Fm', 'Gb', 'Ab', 'Bbm', 'C<sup>o</sup>'],
                     seventh: "[DFAc][EGBd][FAce][GBdf][Aceg][Bdfa][cegb][dfac']",
-                    seventhChord: ['DbΔ7', 'Ebm7', 'Fm7', 'GbΔ7', 'Ab7', 'Bbm7', 'C<sup>ø</sup>7', 'DbΔ7'],
+                    seventhChord: ['DbΔ7', 'Ebm7', 'Fm7', 'GbΔ7', 'Ab7', 'Bbm7', 'C<sup>ø</sup>7'],
                 },
             },
             accidental: {
@@ -418,9 +419,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[_DF_A][_E_G_B][F_Ac][_G_B_d][_Ac_e][_B_df][c_e_g][_df_a]",
-                    triadChord: ['Db', 'Ebm', 'Fm', 'Gb', 'Ab', 'Bbm', 'C<sup>o</sup>', 'Db'],
+                    triadChord: ['Db', 'Ebm', 'Fm', 'Gb', 'Ab', 'Bbm', 'C<sup>o</sup>'],
                     seventh: "[_DF_Ac][_E_G_B_d][F_Ac_e][_G_B_d_f][_Ac_e_g][_B_df_a][c_e_g_b][_df_ac']",
-                    seventhChord: ['DbΔ7', 'Ebm7', 'Fm7', 'GbΔ7', 'Ab7', 'Bbm7', 'C<sup>ø</sup>7', 'DbΔ7'],
+                    seventhChord: ['DbΔ7', 'Ebm7', 'Fm7', 'GbΔ7', 'Ab7', 'Bbm7', 'C<sup>ø</sup>7'],
                 },
             },
         },
@@ -433,9 +434,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[B,DF][CEG][DF=A][EGB][F=Ac][GBd][=Ace][Bdf]",
-                    triadChord: ['Bbm', 'C<sup>o</sup>', 'Db+', 'Ebm', 'F', 'Gb', 'A<sup>o</sup>', 'Bbm'],
+                    triadChord: ['Bbm', 'C<sup>o</sup>', 'Db+', 'Ebm', 'F', 'Gb', 'A<sup>o</sup>'],
                     seventh: "[B,DF][CEG][DF=A][EGB][F=Ac][GBd][=Ace][Bdf]", // dummy
-                    seventhChord: ['Bbm', 'C<sup>o</sup>', 'Db+', 'Ebm', 'F', 'Gb', 'A<sup>o</sup>', 'Bbm'], // dummy
+                    seventhChord: ['Bbm', 'C<sup>o</sup>', 'Db+', 'Ebm', 'F', 'Gb', 'A<sup>o</sup>'], // dummy
                 },
             },
             accidental: {
@@ -445,9 +446,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[_B,_DF][C_E_G][_DFA][_E_G_B][FAc][_G_B_d][Ac_e][_B_df]",
-                    triadChord: ['Bbm', 'C<sup>o</sup>', 'Db+', 'Ebm', 'F', 'Gb', 'A<sup>o</sup>', 'Bbm'],
+                    triadChord: ['Bbm', 'C<sup>o</sup>', 'Db+', 'Ebm', 'F', 'Gb', 'A<sup>o</sup>'],
                     seventh: "[_B,_DF][C_E_G][_DFA][_E_G_B][FAc][_G_B_d][Ac_e][_B_df]", // dummy
-                    seventhChord: ['Bbm', 'C<sup>o</sup>', 'Db+', 'Ebm', 'F', 'Gb', 'A<sup>o</sup>', 'Bbm'], // dummy
+                    seventhChord: ['Bbm', 'C<sup>o</sup>', 'Db+', 'Ebm', 'F', 'Gb', 'A<sup>o</sup>'], // dummy
                 },
             },
         },
@@ -518,21 +519,21 @@ const keys = [
                 },
                 chord: {
                     triad: "[EGB][FAc][GBd][Ace][Bdf][ceg][dfa][egb]",
-                    triadChord: ['Eb', 'Fm', 'Gm', 'Ab', 'Bb', 'Cm', 'D<sup>o</sup>', 'Eb'],
+                    triadChord: ['Eb', 'Fm', 'Gm', 'Ab', 'Bb', 'Cm', 'D<sup>o</sup>'],
                     seventh: "[EGBd][FAce][GBdf][Aceg][Bdfa][cegb][dfac'][egbd']",
-                    seventhChord: ['EbΔ7', 'Fm7', 'Gm7', 'AbΔ7', 'Bb7', 'Cm7', 'D<sup>ø</sup>7', 'EbΔ7'],
+                    seventhChord: ['EbΔ7', 'Fm7', 'Gm7', 'AbΔ7', 'Bb7', 'Cm7', 'D<sup>ø</sup>7'],
                 },
             },
             accidental: {
                 scale: {
-                    natural: '_EFG_A_Bcde',
-                    harmonic: '_EFG_A_Bcde', // dummy
+                    natural: '_EFG_A_Bcd_e',
+                    harmonic: '_EFG_A_Bcd_e', // dummy
                 },
                 chord: {
                     triad: "[_EG_B][F_Ac][G_Bd][_Ac_e][_Bdf][c_eg][df_a][_eg_b]",
-                    triadChord: ['Eb', 'Fm', 'Gm', 'Ab', 'Bb', 'Cm', 'D<sup>o</sup>', 'Eb'],
+                    triadChord: ['Eb', 'Fm', 'Gm', 'Ab', 'Bb', 'Cm', 'D<sup>o</sup>'],
                     seventh: "[_EG_Bd][F_Ac_e][G_Bdf][_Ac_eg][_Bdf_a][c_eg_b][df_ac'][_eg_bd']",
-                    seventhChord: ['EbΔ7', 'Fm7', 'Gm7', 'AbΔ7', 'Bb7', 'Cm7', 'D<sup>ø</sup>7', 'EbΔ7'],
+                    seventhChord: ['EbΔ7', 'Fm7', 'Gm7', 'AbΔ7', 'Bb7', 'Cm7', 'D<sup>ø</sup>7'],
                 },
             },
         },
@@ -545,9 +546,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[CEG][DFA][EG=B][FAc][G=Bd][Ace][=Bdf][ceg]",
-                    triadChord: ['Cm', 'D<sup>o</sup>', 'Eb+', 'Fm', 'G', 'Ab', 'B<sup>o</sup>', 'Cm'],
+                    triadChord: ['Cm', 'D<sup>o</sup>', 'Eb+', 'Fm', 'G', 'Ab', 'B<sup>o</sup>'],
                     seventh: "[CEG][DFA][EG=B][FAc][G=Bd][Ace][=Bdf][ceg]", // dummy
-                    seventhChord: ['Cm', 'D<sup>o</sup>', 'Eb+', 'Fm', 'G', 'Ab', 'B<sup>o</sup>', 'Cm'], // dummy
+                    seventhChord: ['Cm', 'D<sup>o</sup>', 'Eb+', 'Fm', 'G', 'Ab', 'B<sup>o</sup>'], // dummy
                 },
             },
             accidental: {
@@ -557,9 +558,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[C_EG][DF_A][_EGB][F_Ac][GBd][_Ac_e][Bdf][c_eg]",
-                    triadChord: ['Cm', 'D<sup>o</sup>', 'Eb+', 'Fm', 'G', 'Ab', 'B<sup>o</sup>', 'Cm'],
+                    triadChord: ['Cm', 'D<sup>o</sup>', 'Eb+', 'Fm', 'G', 'Ab', 'B<sup>o</sup>'],
                     seventh: "[C_EG][DF_A][_EGB][F_Ac][GBd][_Ac_e][Bdf][c_eg]", // dummy
-                    seventhChord: ['Cm', 'D<sup>o</sup>', 'Eb+', 'Fm', 'G', 'Ab', 'B<sup>o</sup>', 'Cm'], // dummy
+                    seventhChord: ['Cm', 'D<sup>o</sup>', 'Eb+', 'Fm', 'G', 'Ab', 'B<sup>o</sup>'], // dummy
                 },
             },
         },
@@ -574,21 +575,21 @@ const keys = [
                 },
                 chord: {
                     triad: "[B,DF][CEG][DFA][EGB][FAc][GBd][Ace][Bdf]",
-                    triadChord: ['Bb', 'Cm', 'Dm', 'Eb', 'F', 'Gm', 'A<sup>o</sup>', 'Bb'],
+                    triadChord: ['Bb', 'Cm', 'Dm', 'Eb', 'F', 'Gm', 'A<sup>o</sup>'],
                     seventh: "[B,DFA][CEGB][DFAc][EGBd][FAce][GBdf][Aceg][Bdfa]",
-                    seventhChord: ['BbΔ7', 'Cm7', 'Dm7', 'EbΔ7', 'F7', 'Gm7', 'A<sup>ø</sup>7', 'BbΔ7'],
+                    seventhChord: ['BbΔ7', 'Cm7', 'Dm7', 'EbΔ7', 'F7', 'Gm7', 'A<sup>ø</sup>7'],
                 },
             },
             accidental: {
                 scale: {
-                    natural: '_B,CD_EFGAB',
-                    harmonic: '_B,CD_EFGAB', // dummy
+                    natural: '_B,CD_EFGA_B',
+                    harmonic: '_B,CD_EFGA_B', // dummy
                 },
                 chord: {
                     triad: "[_B,DF][C_EG][DFA][_EG_B][FAc][G_Bd][Ac_e][_Bdf]",
-                    triadChord: ['Bb', 'Cm', 'Dm', 'Eb', 'F', 'Gm', 'A<sup>o</sup>', 'Bb'],
+                    triadChord: ['Bb', 'Cm', 'Dm', 'Eb', 'F', 'Gm', 'A<sup>o</sup>'],
                     seventh: "[_B,DFA][C_EG_B][DFAc][_EG_Bd][FAc_e][G_Bdf][Ac_eg][_Bdfa]",
-                    seventhChord: ['BbΔ7', 'Cm7', 'Dm7', 'EbΔ7', 'F7', 'Gm7', 'A<sup>ø</sup>7', 'BbΔ7'],
+                    seventhChord: ['BbΔ7', 'Cm7', 'Dm7', 'EbΔ7', 'F7', 'Gm7', 'A<sup>ø</sup>7'],
                 },
             },
         },
@@ -601,9 +602,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[GBd][Ace][Bd^f][ceg][d^fa][egb][^fac'][gbd']",
-                    triadChord: ['Gm', 'A<sup>o</sup>', 'Bb+', 'Cm', 'D', 'Eb', 'F#<sup>o</sup>', 'Gm'],
+                    triadChord: ['Gm', 'A<sup>o</sup>', 'Bb+', 'Cm', 'D', 'Eb', 'F#<sup>o</sup>'],
                     seventh: "[GBd][Ace][Bd^f][ceg][d^fa][egb][^fac'][gbd']", // dummy
-                    seventhChord: ['Gm', 'A<sup>o</sup>', 'Bb+', 'Cm', 'D', 'Eb', 'F#<sup>o</sup>', 'Gm'], // dummy
+                    seventhChord: ['Gm', 'A<sup>o</sup>', 'Bb+', 'Cm', 'D', 'Eb', 'F#<sup>o</sup>'], // dummy
                 },
             },
             accidental: {
@@ -613,9 +614,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[G_Bd][Ac_e][_Bd^f][c_eg][d^fa][_eg_b][^fac'][g_bd']",
-                    triadChord: ['Gm', 'A<sup>o</sup>', 'Bb+', 'Cm', 'D', 'Eb', 'F#<sup>o</sup>', 'Gm'],
+                    triadChord: ['Gm', 'A<sup>o</sup>', 'Bb+', 'Cm', 'D', 'Eb', 'F#<sup>o</sup>'],
                     seventh: "[G_Bd][Ac_e][_Bd^f][c_eg][d^fa][_eg_b][^fac'][g_bd']", // dummy
-                    seventhChord: ['Gm', 'A<sup>o</sup>', 'Bb+', 'Cm', 'D', 'Eb', 'F#<sup>o</sup>', 'Gm'], // dummy
+                    seventhChord: ['Gm', 'A<sup>o</sup>', 'Bb+', 'Cm', 'D', 'Eb', 'F#<sup>o</sup>'], // dummy
                 },
             },
         },
@@ -630,9 +631,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[FAc][GBd][Ace][Bdf][ceg][dfa][egb][fac']",
-                    triadChord: ['F', 'Gm', 'Am', 'Bb', 'C', 'Dm', 'E<sup>o</sup>', 'F'],
+                    triadChord: ['F', 'Gm', 'Am', 'Bb', 'C', 'Dm', 'E<sup>o</sup>'],
                     seventh: "[FAce][GBdf][Aceg][Bdfa][cegb][dfac'][egbd'][fac'e']",
-                    seventhChord: ['FΔ7', 'Gm7', 'Am7', 'BbΔ7', 'C7', 'Dm7', 'E<sup>ø</sup>7', 'FΔ7'],
+                    seventhChord: ['FΔ7', 'Gm7', 'Am7', 'BbΔ7', 'C7', 'Dm7', 'E<sup>ø</sup>7'],
                 },
             },
             accidental: {
@@ -642,9 +643,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[FAc][G_Bd][Ace][_Bdf][ceg][dfa][eg_b][fac']",
-                    triadChord: ['F', 'Gm', 'Am', 'Bb', 'C', 'Dm', 'E<sup>o</sup>', 'F'],
+                    triadChord: ['F', 'Gm', 'Am', 'Bb', 'C', 'Dm', 'E<sup>o</sup>'],
                     seventh: "[FAce][G_Bdf][Aceg][_Bdfa][ceg_b][dfac'][eg_bd'][fac'e']",
-                    seventhChord: ['FΔ7', 'Gm7', 'Am7', 'BbΔ7', 'C7', 'Dm7', 'E<sup>ø</sup>7', 'FΔ7'],
+                    seventhChord: ['FΔ7', 'Gm7', 'Am7', 'BbΔ7', 'C7', 'Dm7', 'E<sup>ø</sup>7'],
                 },
             },
         },
@@ -657,9 +658,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[DFA][EGB][FA^c][GBd][A^ce][Bdf][^ceg][dfa]",
-                    triadChord: ['Dm', 'E<sup>o</sup>', 'F+', 'Gm', 'A', 'Bb', 'C#<sup>o</sup>', 'Dm'],
+                    triadChord: ['Dm', 'E<sup>o</sup>', 'F+', 'Gm', 'A', 'Bb', 'C#<sup>o</sup>'],
                     seventh: "[DFA][EGB][FA^c][GBd][A^ce][Bdf][^ceg][dfa]", // dummy
-                    seventhChord: ['Dm', 'E<sup>o</sup>', 'F+', 'Gm', 'A', 'Bb', 'C#<sup>o</sup>', 'Dm'], // dummy
+                    seventhChord: ['Dm', 'E<sup>o</sup>', 'F+', 'Gm', 'A', 'Bb', 'C#<sup>o</sup>'], // dummy
                 },
             },
             accidental: {
@@ -669,9 +670,9 @@ const keys = [
                 },
                 chord: {
                     triad: "[DFA][EG_B][FA^c][G_Bd][A^ce][_Bdf][^ceg][dfa]",
-                    triadChord: ['Dm', 'E<sup>o</sup>', 'F+', 'Gm', 'A', 'Bb', 'C#<sup>o</sup>', 'Dm'],
+                    triadChord: ['Dm', 'E<sup>o</sup>', 'F+', 'Gm', 'A', 'Bb', 'C#<sup>o</sup>'],
                     seventh: "[DFA][EG_B][FA^c][G_Bd][A^ce][_Bdf][^ceg][dfa]", // dummy
-                    seventhChord: ['Dm', 'E<sup>o</sup>', 'F+', 'Gm', 'A', 'Bb', 'C#<sup>o</sup>', 'Dm'], // dummy
+                    seventhChord: ['Dm', 'E<sup>o</sup>', 'F+', 'Gm', 'A', 'Bb', 'C#<sup>o</sup>'], // dummy
                 },
             },
         },
@@ -790,10 +791,17 @@ function renderBar(abcstr){
         }
     );
     if(option.mode === 'chord'){
-        chordName.style.display = 'flex';
-        chords.forEach((span, idx) => {
-            span.innerHTML = option.currentKey[option.currentTone][option.signMode]['chord'][`${ option.chordMode }Chord`][idx];
-        });
+        if(option.currentTone === 'minor' && option.chordMode === 'seventh'){
+            sheet.style.display = 'none';
+            chordName.style.display = 'none';
+        }
+        else {
+            sheet.style.display = 'block';
+            chordName.style.display = 'flex';
+            chords.forEach((span, idx) => {
+                span.innerHTML = option.currentKey[option.currentTone][option.signMode]['chord'][`${ option.chordMode }Chord`][idx];
+            });
+        }
     }
     else {
         chordName.style.display = 'none';
